@@ -1,0 +1,71 @@
+extends layout.pug
+
+block content
+  script( type='text/javascript' ).
+     document.addEventListener( 'DOMContentLoaded', () => {
+        // Initalize floating button
+        const fixedBtns = document.querySelectorAll('.fixed-action-btn');
+        const instances = M.FloatingActionButton.init( fixedBtns );
+      });
+
+    function addTask() {
+      const newFields = document.getElementById('daily-task').cloneNode( true );
+
+      newFields.id = '';
+      newFields.childNodes.forEach( field => {
+        const inputs = field.getElementsByTagName('input');
+        if ( inputs.length > 0 ) {
+          inputs[ 0 ].value = '';
+        }
+
+        const buttons = field.getElementsByTagName('button');
+        if ( buttons.length > 0 ) {
+          buttons[ 0 ].style.display = 'inline-block';
+        }   
+      });
+
+      const form = document.getElementById('dailyExpenses');
+      form.appendChild( newFields );
+    }
+
+  div( class="container section" id="container" )
+    form( action="/expenses" method="post" id='dailyExpenses' name='dailyExpenses' )
+
+      div( class="input-field row" id="property" )
+        select( class="browser-default" name="property" )
+          option( value="" disabled selected ) Choose a property
+          for property in properties
+            option( value=property )=property
+
+      div( class="fixed-action-btn" )
+        a( class="btn-floating btn-large green darken-1" onClick="dailyExpenses.submit()" )
+          i( class="material-icons left" ) send
+
+      div( class="section" id="daily-task" )
+        div( class="input-field row" )
+          input( placeholder="Task" name="task" type="text" class="validate col s10 offset-m1" )
+
+        div( class="input-field row" )
+          input( placeholder="People" name="people" type="text" class="validate col s10 offset-m1" )
+
+        div( class="input-field row" )
+          input( placeholder="Labor: $75/hr" name="labor75" type="number" class="validate col s10 offset-m1" )
+        
+        div( class="input-field row" )
+          input( placeholder="Labor: $50/hr" name="labor50" type="number" class="validate col s10 offset-m1" )
+  
+        div( class="input-field row" )
+          input( placeholder="Materials: $" name="materials" type="text" class="validate col s10 offset-m1" )
+
+        div( class="center" )
+          button( class="btn waves-effect waves-light red darken-1" style="display: none"
+            onclick="this.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode );" ) Remove task
+
+    div( class="divider" )
+    div( class="section" )
+       
+    div( class="row section center" id="buttons" )
+      button( class="btn waves-effect waves-light green darken-1" onClick="addTask()" ) Add new task
+        i( class="material-icons right" ) add
+    
+      

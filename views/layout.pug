@@ -1,0 +1,36 @@
+html
+  head
+    link( rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css" )
+    link( rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons" )
+  body
+    nav( class="green darken-1" )
+      div( class="nav-wrapper" )
+        a( href="/" class="brand-logo center" ) Daily Expenses
+        ul( class="left hide-on-med-and-down" )
+          li
+            a( href="/properties" ) Add a new property
+    block content
+
+    if status
+      span( style="display: none;" id='status' )=status
+
+    if error
+      span( style="display: none;" id='error' )=error
+
+  script( src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" )
+  script( type='text/javascript' ).
+    document.addEventListener( 'DOMContentLoaded', () => {
+      const status = document.querySelector('#status');
+
+      if ( status ) {
+        const statusMessage = status.innerHTML;
+        M.toast({ html: statusMessage, classes: 'green darken 1' });
+      }
+
+      const error = document.querySelector('#error');
+
+      if ( error ) {
+        const errorMessage = error.innerHTML;
+        M.toast({ html: errorMessage, classes: 'red darken 1' });
+      }
+    });

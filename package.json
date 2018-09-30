@@ -1,0 +1,25 @@
+{
+  "name": "daily-expenses",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Daily expense creator for small businesses",
+  "author": "Jason Brooks",
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cookie-parser": "1.4.3",
+    "debug": "2.6.9",
+    "express": "4.16.0",
+    "http-errors": "1.6.2",
+    "morgan": "1.9.0",
+    "pug": "2.0.0-beta11",
+    "googleapis": "32.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-starry": "7.1.0",
+    "eslint-plugin-starry": "5.0.0",
+    "eslint": "4.19.1"
+  }
+}
