@@ -5,7 +5,7 @@
   "description": "Daily expense creator for small businesses",
   "author": "Jason Brooks",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
