@@ -7,6 +7,8 @@ const expensesRouter   = require('./lib/routes/expenses');
 const propertiesRouter = require('./lib/routes/properties');
 const authRouter       = require('./lib/routes/auth');
 
+const port = process.env.NODE_ENV === 'dev' ? 3000 : 80;
+
 const app = express();
 
 // view engine setup
@@ -50,4 +52,4 @@ app.use( ( err, req, res, next ) => {
   res.render('error');
 });
 
-app.listen( 3000, () => console.log('Example app listening on port 3000!') );
+app.listen( port, () => console.log( `listening on port ${ port }!` ) );
