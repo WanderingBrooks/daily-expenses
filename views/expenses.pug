@@ -14,7 +14,7 @@ block content
 
         const buttons = field.getElementsByTagName('button');
         if ( buttons.length > 0 ) {
-          buttons[ 0 ].style.display = 'inline-block';
+          buttons[ 0 ].parentNode.style.display = '';
         }   
       });
 
@@ -47,9 +47,10 @@ block content
         div( class="input-field row" )
           input( placeholder="Materials: $" name="materials" type="text" class="col s10 offset-m1" )
 
-        div( class="center" )
-          button( class="btn red darken-1" style="display: none"
+        div( class="center" style="display: none" )
+          button( class="btn red darken-1"
             onclick="this.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode );" ) Remove task
+            i( class="material-icons right" ) clear
 
     div( class="divider" )
     div( class="section" )
@@ -59,6 +60,6 @@ block content
         i( class="material-icons right" ) add
 
       button( class="bottom-btn btn green darken-1" onClick="dailyExpenses.submit()" ) Save
-        i( class="material-icons right" ) send
+        i( class="material-icons right" ) save
     
       
