@@ -2,12 +2,6 @@ extends layout.pug
 
 block content
   script( type='text/javascript' ).
-     document.addEventListener( 'DOMContentLoaded', () => {
-        // Initalize floating button
-        const fixedBtns = document.querySelectorAll('.fixed-action-btn');
-        const instances = M.FloatingActionButton.init( fixedBtns );
-      });
-
     function addTask() {
       const newFields = document.getElementById('daily-task').cloneNode( true );
 
@@ -37,10 +31,6 @@ block content
           for property in properties
             option( value=property )=property
 
-      div( class="fixed-action-btn" )
-        a( class="btn-floating btn-large green darken-1" onClick="dailyExpenses.submit()" )
-          i( class="material-icons left" ) send
-
       div( class="section" id="daily-task" )
         div( class="input-field row" )
           input( placeholder="Task" name="task" type="text" class="validate col s10 offset-m1" )
@@ -58,14 +48,17 @@ block content
           input( placeholder="Materials: $" name="materials" type="text" class="validate col s10 offset-m1" )
 
         div( class="center" )
-          button( class="btn waves-effect waves-light red darken-1" style="display: none"
+          button( class="btn red darken-1" style="display: none"
             onclick="this.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode );" ) Remove task
 
     div( class="divider" )
     div( class="section" )
        
     div( class="row section center" id="buttons" )
-      button( class="btn waves-effect waves-light green darken-1" onClick="addTask()" ) Add new task
+      button( class="bottom-btn btn blue darken-1" onClick="addTask()" ) Add task
         i( class="material-icons right" ) add
+
+      button( class="bottom-btn btn green darken-1" onClick="dailyExpenses.submit()" ) Save
+        i( class="material-icons right" ) send
     
       
