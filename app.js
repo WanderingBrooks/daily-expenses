@@ -21,6 +21,19 @@ app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
+if ( process.env.NODE_ENV !== 'dev' ) {
+  app.all( '/*', ( req, res, next ) => {
+    const xfp = req.headers['x-forwarded-proto']
+      || req.headers['X-Forwarded-Proto'];
+
+    if ( xfp && xfp !== 'https' ) {
+      return res.redirect( `https://${ req.headers.host }${ req.url }` );
+    }
+
+    return next();
+  });
+}
+
 app.use( '/expenses', expensesRouter );
 app.use( '/properties', propertiesRouter );
 app.use( '/auth', authRouter );
