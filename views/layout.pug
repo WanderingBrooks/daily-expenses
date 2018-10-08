@@ -3,15 +3,17 @@ html
     title Daily Expenses
     link( rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css" )
     link( rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons" )
-    link( rel="stylesheet", href="stylesheets/button.css" )
+    link( rel="stylesheet", href="stylesheets/base.css" )
     link( rel="shortcut icon" href="images/favicon.png" )
   body
     nav( class="green darken-1" )
       div( class="nav-wrapper" )
-        a( href="/" class="brand-logo center" ) Daily Expenses
+        a( href="/expenses" class="brand-logo center" ) Daily Expenses
         ul( class="left" )
           li
             a( href="/properties" ) Add a new property
+          li
+            a( href="/see" ) See properties
     block content
 
     if status
