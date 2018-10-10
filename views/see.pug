@@ -4,4 +4,5 @@ block content
   div( class="container section" )
     for property in properties
       div( class="see-links center row" id="property" )
-        a( href=`https://docs.google.com/spreadsheets/d/${ property.sheetid }`)=property.name
+        iframe( src=`https://docs.google.com/spreadsheets/d/${ property }/pubhtml?widget=true&amp;headers=false`
+          height='400' width='800' )
