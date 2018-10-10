@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
   div( class="container section" )
-    for property in properties
+    for id in sheetids
       div( class="see-links center row" id="property" )
-        iframe( src=`https://docs.google.com/spreadsheets/d/${ property }/pubhtml?widget=true&amp;headers=false`
+        iframe( src=`https://docs.google.com/spreadsheets/d/${ id }/pubhtml?widget=true&headers=false`
           height='50%' width='100%' )
