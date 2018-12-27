@@ -1,14 +1,15 @@
-const express          = require('express');
-const path             = require('path');
-const cookieParser     = require('cookie-parser');
-const logger           = require('morgan');
+const express      = require('express');
+const path         = require('path');
+const cookieParser = require('cookie-parser');
+const setRoutes    = require('./lib/routes');
 
-const expensesRouter   = require('./lib/routes/expenses');
-const propertiesRouter = require('./lib/routes/properties');
-const authRouter       = require('./lib/routes/auth');
-const seeRouter        = require('./lib/routes/see');
+let port;
 
-const port = process.env.NODE_ENV === 'dev' ? 3000 : 80;
+if ( process.env.PORT ) {
+  port = process.env.PORT;
+} else {
+  port = process.env.NODE_ENV === 'dev' ? 3000 : 80;
+}
 
 const app = express();
 
@@ -16,7 +17,6 @@ const app = express();
 app.set( 'views', path.join( __dirname, 'views' ) );
 app.set( 'view engine', 'pug' );
 
-app.use( logger('dev') );
 app.use( express.json() );
 app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
@@ -35,25 +35,6 @@ if ( process.env.NODE_ENV !== 'dev' ) {
   });
 }
 
-app.use( '/expenses', expensesRouter );
-app.use( '/properties', propertiesRouter );
-app.use( '/auth', authRouter );
-app.use( '/see', seeRouter );
-
-// send away the bots
-app.get( '/robots.txt', ( req, res ) => {
-  res.type('text/plain');
-  res.send('User-agent: *\nDisallow: /');
-});
-
-// Appease the google gods
-app.get( '/privacy', ( req, res ) => {
-  res.render('privacy');
-});
-
-// catch 404 and forward to error handler
-app.use( ( req, res, next ) => {
-  res.redirect('/expenses');
-});
+setRoutes( app );
 
 app.listen( port, () => console.log( `listening on port ${ port }!` ) );
