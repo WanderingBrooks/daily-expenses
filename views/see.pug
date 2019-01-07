@@ -2,7 +2,17 @@ extends layout.pug
 
 block content
   div( class="container section" )
-    for id in sheetids
-      div( class="see-links center row" id="property" )
-        iframe( src=`https://docs.google.com/spreadsheets/d/${ id }`
-          height='50%' width='100%' )
+    div( class="row" )
+      ul( class="tabs" )
+        each sheet in sheets
+          li( class="tab col s3" )
+            a( href="#" + sheet.name )=sheet.name
+      each sheet in sheets
+        div( class="see-links center row" id=sheet.name )
+          iframe( src=`https://docs.google.com/spreadsheets/d/${ sheet.id }`
+            height='75%' width='100%' )
+  
+  script( type='text/javascript' ).
+    document.addEventListener( 'DOMContentLoaded', () => {
+      M.AutoInit();
+    });
