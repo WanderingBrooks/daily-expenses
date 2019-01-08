@@ -5,10 +5,10 @@ block content
     ul( class="tabs" )
       each sheet in sheets
         li( class="tab col s3" )
-          a( href="#" + sheet.name class="green-text darken 1" )=sheet.name
+          a( href="#" + sheet.name class="green-text darken 1" )=`${ sheet.name } ${ sheet.month }`
     each sheet in sheets
       div( class="center row" id=sheet.name )
-        iframe( src=`https://docs.google.com/spreadsheets/d/${ sheet.id }`
+        iframe( src=`https://docs.google.com/spreadsheets/d/${ sheet.sheetid }`
           height='75%' width='100%' )
   
   script( type='text/javascript' ).
